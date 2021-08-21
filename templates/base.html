@@ -49,10 +49,12 @@
     <div class="container">
     <form action="{% url 'new_search' %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="search" placeholder="search">
+
+        <input type="text" name="search" placeholder="Search">
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
             <i class="material-icons right">search</i>
-          </button> </form>
+        </button>
+    </form>
     
     {% block content %}
 

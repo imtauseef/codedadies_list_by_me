@@ -1,13 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 <h2 style="text-align: center;">{{ searched_things }}</h2>
 
-<section class="row">
+<section class="row" style="display: flex; flex-wrap: wrap;">
 
     {% for post in final_postings %}
     <div class="col s4">
         <div class="card">
             <div class="card-image">
-                <a href="{{ post.1 }}"><img src="https://i.pinimg.com/originals/3d/28/f6/3d28f686eedf45c07c762e22e25f5018.jpg" alt=""></a>
+                <a href="{{ post.1 }}"><img src="{{ post.3 }}" alt=""></a>
             </div>
             <div class="card-content">
                 <p>{{ post.0 }}</p>

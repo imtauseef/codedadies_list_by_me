@@ -7,6 +7,7 @@ from .models import Search
 
 # Create your views here.
 BASE_CRAIGSLIST_URL = "https://newyork.craigslist.org/d/services/search/bbb?query={}"
+BASE_IMAGE_URL = "https://images.craigslist.org/{}_300x300.jpg"
 
 def home(request):
     return render(request, template_name="base.html")
@@ -29,8 +30,14 @@ def search(request):
             post_price = post.find(class_='result-price').text
         else:
             post_price = "N/A"
+
+        if post.find(class_='result-image').get('data-ids'):
+            post_image_id = post.find(class_='result-image').get('data-ids').split(',')[0].split(':')[1]
+            post_image_url = BASE_IMAGE_URL.format(post_image_id)
+        else:
+            post_image_url = "https://craigslist.org/images/peace.jpg"
     
-        final_postings.append((post_title, post_url, post_price))
+        final_postings.append((post_title, post_url, post_price, post_image_url))
 
     context = {
         'searched_things': searched_things,
